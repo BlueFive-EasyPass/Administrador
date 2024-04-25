@@ -10,7 +10,6 @@ namespace Adm.Services
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             return passwordHash;
         }
-
         public bool Decrypt(string password, string hash)
         {
             var verifyPassword = BCrypt.Net.BCrypt.Verify(password, hash);
