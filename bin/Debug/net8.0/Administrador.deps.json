@@ -12,11 +12,13 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.4",
           "Microsoft.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.4",
+          "Moq": "4.20.70",
           "Newtonsoft.Json": "13.0.3",
           "SnapObjects.Data": "4.2.2",
           "SnapObjects.Data.AspNetCore": "4.2.2",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "7.5.1",
+          "xunit": "2.7.1",
           "dotenv.net": "3.1.3"
         },
         "runtime": {
@@ -70,6 +72,17 @@
           "lib/net6.0/BCrypt.Net-Next.dll": {
             "assemblyVersion": "4.0.3.0",
             "fileVersion": "4.0.3.0"
+          }
+        }
+      },
+      "Castle.Core/5.1.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.1.0"
           }
         }
       },
@@ -385,6 +398,17 @@
           }
         }
       },
+      "Moq/4.20.70": {
+        "dependencies": {
+          "Castle.Core": "5.1.1"
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.20.70.0",
+            "fileVersion": "4.20.70.0"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -501,6 +525,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
+      "System.Diagnostics.EventLog/6.0.0": {},
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
@@ -761,6 +786,58 @@
             "fileVersion": "1.3.7.0"
           }
         }
+      },
+      "xunit/2.7.1": {
+        "dependencies": {
+          "xunit.analyzers": "1.12.0",
+          "xunit.assert": "2.7.1",
+          "xunit.core": "2.7.1"
+        }
+      },
+      "xunit.abstractions/2.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/xunit.abstractions.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "xunit.analyzers/1.12.0": {},
+      "xunit.assert/2.7.1": {
+        "runtime": {
+          "lib/net6.0/xunit.assert.dll": {
+            "assemblyVersion": "2.7.1.0",
+            "fileVersion": "2.7.1.0"
+          }
+        }
+      },
+      "xunit.core/2.7.1": {
+        "dependencies": {
+          "xunit.extensibility.core": "2.7.1",
+          "xunit.extensibility.execution": "2.7.1"
+        }
+      },
+      "xunit.extensibility.core/2.7.1": {
+        "dependencies": {
+          "xunit.abstractions": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.core.dll": {
+            "assemblyVersion": "2.7.1.0",
+            "fileVersion": "2.7.1.0"
+          }
+        }
+      },
+      "xunit.extensibility.execution/2.7.1": {
+        "dependencies": {
+          "xunit.extensibility.core": "2.7.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/xunit.execution.dotnet.dll": {
+            "assemblyVersion": "2.7.1.0",
+            "fileVersion": "2.7.1.0"
+          }
+        }
       }
     }
   },
@@ -797,6 +874,13 @@
       "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
+    },
+    "Castle.Core/5.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "path": "castle.core/5.1.1",
+      "hashPath": "castle.core.5.1.1.nupkg.sha512"
     },
     "dotenv.net/3.1.3": {
       "type": "package",
@@ -1043,6 +1127,13 @@
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
+    "Moq/4.20.70": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4rNnAwdpXJBuxqrOCzCyICXHSImOTRktCgCWXWykuF1qwoIsVvEnR7PjbMk/eLOxWvhmj5Kwt+kDV3RGUYcNwg==",
+      "path": "moq/4.20.70",
+      "hashPath": "moq.4.20.70.nupkg.sha512"
+    },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",
       "serviceable": true,
@@ -1126,6 +1217,13 @@
       "sha512": "sha512-KiLYDu2k2J82Q9BJpWiuQqCkFjRBWVq4jDzKKWawVi9KWzyD0XG3cmfX0vqTQlL14Wi9EufJrbL0+KCLTbqWiQ==",
       "path": "system.diagnostics.diagnosticsource/6.0.1",
       "hashPath": "system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     },
     "System.Drawing.Common/6.0.0": {
       "type": "package",
@@ -1364,6 +1462,55 @@
       "sha512": "sha512-lMTNZWp6a6KGkgMc3rW41D3b0REb03fQycfb/2bNBpiUtsbGYYI/LrAhnX52vrHRe4ze7JxbtpWF1Y5ohdpipQ==",
       "path": "utf8json/1.3.7",
       "hashPath": "utf8json.1.3.7.nupkg.sha512"
+    },
+    "xunit/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9o050yCLzPvHxbrAkaHnI1j+YfPvRw+/ncvKbTfzIhO4JvQA0rPgoICJxXHMkscfgXmLFwZ8107ehnMUVzE23A==",
+      "path": "xunit/2.7.1",
+      "hashPath": "xunit.2.7.1.nupkg.sha512"
+    },
+    "xunit.abstractions/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg==",
+      "path": "xunit.abstractions/2.0.3",
+      "hashPath": "xunit.abstractions.2.0.3.nupkg.sha512"
+    },
+    "xunit.analyzers/1.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w23LH3aXade2WXKvXi0oA/uV15fpgUMjsPq1x91iQckzgWApgAiijNHmfFQtqNPm41wfrdbRl7nSJRd0yux/dw==",
+      "path": "xunit.analyzers/1.12.0",
+      "hashPath": "xunit.analyzers.1.12.0.nupkg.sha512"
+    },
+    "xunit.assert/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JqvXS4yX+PtJn5BuqoKkYav7I0g4nXcxRbGTomDwVQjFccOdyfYKpuPOHX/DqrPCcL+MIHrGVdP3bveUXlvdnA==",
+      "path": "xunit.assert/2.7.1",
+      "hashPath": "xunit.assert.2.7.1.nupkg.sha512"
+    },
+    "xunit.core/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hcODgS+RXdjmXq0zQzmRbERQgY+bAGGx1bdH3370t/8CTGmIEU2qAc1dQAjIRpARsacR0cj6LLJDUF5BNQNKTQ==",
+      "path": "xunit.core/2.7.1",
+      "hashPath": "xunit.core.2.7.1.nupkg.sha512"
+    },
+    "xunit.extensibility.core/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yLX4XlBFkvNYCzf+DEzlNk45KsSlu9W93IJHBmtUP96qZ9XyRYDFlwMj6BCcOhDKVNrZxSM8bqu4F/Qud4ehxA==",
+      "path": "xunit.extensibility.core/2.7.1",
+      "hashPath": "xunit.extensibility.core.2.7.1.nupkg.sha512"
+    },
+    "xunit.extensibility.execution/2.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ei3dKF8agj4UKkJ6KkaZ5/Gcif3if6hBsyzegIQJonZDSKZFvb0AyKtyOhDfggBaXVL5iXZExITdRkfjC95yhw==",
+      "path": "xunit.extensibility.execution/2.7.1",
+      "hashPath": "xunit.extensibility.execution.2.7.1.nupkg.sha512"
     }
   }
 }
