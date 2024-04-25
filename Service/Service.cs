@@ -52,19 +52,16 @@ namespace Adm.Service
                 Email = administrador.Email
             };
             IResultadoOperacao<List<Administrador>> search = await GetAdministradoresAsync(query);
-            if (search.Data != null)
+            if (search.Data is not null && !string.IsNullOrEmpty(administrador.Senha))
             {
-                foreach (var adm in search.Data)
+                var adm = search.Data.FirstOrDefault(a => a.Senha != null);
+                if (adm is not null && adm.Senha is not null)
                 {
-                    if (!string.IsNullOrEmpty(administrador.Senha) && adm.Senha != null)
+                    bool compare = _Crypto.Decrypt(administrador.Senha, adm.Senha);
+                    if (compare)
                     {
-                        bool compare = _Crypto.Decrypt(administrador.Senha, adm.Senha);
-                        if (compare)
-                        {
-                            string token = _Auth.CreateToken(adm);
-                            return new ResultadoOperacao<string> { Data = token, Sucesso = true };
-                        }
-                        return new ResultadoOperacao<string> { Sucesso = false, Erro = "Email ou Senha Incorreta" };
+                        string token = _Auth.CreateToken(adm);
+                        return new ResultadoOperacao<string> { Data = token, Sucesso = true };
                     }
                 }
             }

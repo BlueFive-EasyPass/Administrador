@@ -146,9 +146,9 @@ namespace Adm.Adapters
                 {
                     return BadRequest(result);
                 }
-                if (result.Data != null)
+                if (result.Data is not null)
                 {
-                    HttpContext.Session.SetString("AuthToken", result.Data);
+                    HttpContext.Session.SetString("AuthToken", result.Data ?? "");
                 }
 
                 return Ok(result);

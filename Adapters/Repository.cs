@@ -21,29 +21,15 @@ namespace Adm.Infrastructure
 
             var queryable = _context.Administradors.AsQueryable();
 
-            if (query.Id != null)
-            {
-                queryable = queryable.Where(a => a.Id == query.Id);
-            }
-
-            if (!string.IsNullOrEmpty(query.Nome))
-            {
-                queryable = queryable.Where(a => a.Nome == query.Nome);
-            }
-
-            if (!string.IsNullOrEmpty(query.Email))
-            {
-                queryable = queryable.Where(a => a.Email == query.Email);
-            }
-
-            if (query.Level != null)
-            {
-                queryable = queryable.Where(a => a.Level == query.Level);
-            }
+            var filteredQueryable = queryable
+                .Where(a => query.Id == null || a.Id == query.Id)
+                .Where(a => string.IsNullOrEmpty(query.Nome) || a.Nome == query.Nome)
+                .Where(a => string.IsNullOrEmpty(query.Email) || a.Email == query.Email)
+                .Where(a => query.Level == null || a.Level == query.Level);
 
             try
             {
-                List<Administrador> administradores = await queryable.ToListAsync();
+                List<Administrador> administradores = await filteredQueryable.ToListAsync();
 
                 if (administradores.Count == 0)
                 {
@@ -86,33 +72,29 @@ namespace Adm.Infrastructure
             try
             {
                 IAdministradorDTO? adm = _context.Administradors.Find(administrador.Id);
-                if (adm != null)
+                if (adm is not null)
                 {
-                    if (administrador.Email != null)
+                    var properties = typeof(IAdministradorDTO).GetProperties();
+                    foreach (var property in properties)
                     {
-                        adm.Email = administrador.Email;
-                    }
-                    if (administrador.Nome != null)
-                    {
-                        adm.Nome = administrador.Nome;
-                    }
-                    if (administrador.Senha != null)
-                    {
-                        adm.Senha = administrador.Senha;
-                    }
-                    if (administrador.Level != null)
-                    {
-                        adm.Level = administrador.Level;
+                        if (property.CanWrite)
+                        {
+                            var value = property.GetValue(administrador);
+                            if (value != null)
+                            {
+                                property.SetValue(adm, value);
+                            }
+                        }
                     }
                 }
-                await _context.SaveChangesAsync();
-                IAdministradorDTO? administradorNovo = _context.Administradors.Find(administrador.Id);
-                if (administradorNovo == null)
-                {
-                    return new ResultadoOperacao<IAdministradorDTO> { Sucesso = false, Erro = "Administrador não existe" };
+                    await _context.SaveChangesAsync();
+                    IAdministradorDTO? administradorNovo = _context.Administradors.Find(administrador.Id);
+                    if (administradorNovo == null)
+                    {
+                        return new ResultadoOperacao<IAdministradorDTO> { Sucesso = false, Erro = "Administrador não existe" };
+                    }
+                    return new ResultadoOperacao<IAdministradorDTO> { Data = adm, Sucesso = true };
                 }
-                return new ResultadoOperacao<IAdministradorDTO> { Data = adm, Sucesso = true };
-            }
             catch (DbUpdateException)
             {
                 return new ResultadoOperacao<IAdministradorDTO> { Sucesso = false, Erro = "Erro ao editar administrador" };
